@@ -1,0 +1,221 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MusicPlayer.UI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:track="clr-namespace:MusicPlayer.Entities.Interfaces;assembly=MusicPlayer.Entities"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
+        MinHeight="550"
+        MinWidth="850"
+        x:Class="MusicPlayer.UI.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="MusicPlayer"
+        Background="#BB000000"
+        Foreground="White"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        ExtendClientAreaTitleBarHeightHint="75">
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="250"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="100"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock Grid.Column="0"
+               Grid.Row="0"
+               Text="♪♫α"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="60"/>
+
+    <StackPanel Grid.Column="1"
+                Grid.Row="0"
+                Orientation="Horizontal"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Margin="10">
+      <TextBox Watermark="Hello"
+               Margin="5,0"
+               Width="250"
+               Text="{Binding LocationToAdd}"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+      <Button Content="Add URL"
+              IsEnabled="{Binding IsNotBusy}"
+              Command="{Binding AddURL}"
+              Margin="5,0"/>
+      <Button Content="Add YT Playlist"
+              IsEnabled="{Binding IsNotBusy}"
+              Command="{Binding AddYoutubePlaylist}"
+              Margin="5,0"/>
+      <Button Content="Browse"
+              IsEnabled="{Binding IsNotBusy}"
+              Command="{Binding AddLocalTracks}"
+              Margin="5,0"/>
+    </StackPanel>
+
+    <Grid Grid.Column="0"
+          Grid.Row="1"
+          Margin="25,10"
+          VerticalAlignment="Stretch">
+      <Grid.RowDefinitions>
+        <RowDefinition MinHeight="50"
+                       MaxHeight="100"/>
+        <RowDefinition Height="25"/>
+        <RowDefinition Height="25"/>
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="75"/>
+        <RowDefinition Height="50"/>
+        <RowDefinition Height="25"/>
+        <RowDefinition Height="25"/>
+        <RowDefinition Height="30"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      
+      <Image Grid.Row="0"
+             Grid.ColumnSpan="2"
+             Margin="0,5"
+             Source="{Binding CurrentTrack.CoverImage}"
+             Stretch="Uniform"/>
+      <TextBlock Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="1"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Text="{Binding CurrentTrack.Title}"/>
+      <TextBlock Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="2"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Text="{Binding CurrentTrack.Artist}"/>
+      <Button Grid.Column="0"
+              Grid.Row="3"
+              HorizontalContentAlignment="Center"
+              HorizontalAlignment="Stretch"
+              IsEnabled="{Binding IsNotBusy}"
+              Content="Play/Pause"
+              Command="{Binding PlayPause}"/>
+      <Button Grid.Column="1"
+              Grid.Row="3"
+              HorizontalContentAlignment="Center"
+              HorizontalAlignment="Stretch"
+              IsEnabled="{Binding IsNotBusy}"
+              Content="Stop"
+              Command="{Binding Stop}"/>
+      <Button Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Grid.Row="4"
+              HorizontalContentAlignment="Center"
+              HorizontalAlignment="Stretch"
+              IsEnabled="{Binding IsNotBusy}"
+              Content="Skip"
+              Command="{Binding Skip}"/>
+      <ToggleSwitch Grid.Column="0"
+                    Grid.Row="5"
+                    Content="Shuffle"
+                    Margin="0,5"
+                    IsChecked="{Binding IsShuffle}"/>
+      <ToggleSwitch Grid.Column="1"
+                    Grid.Row="5"
+                    Content="Normalize"
+                    Margin="0,5"
+                    IsChecked="{Binding IsNormalize}"/>
+      <Slider Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Grid.Row="6"
+              Orientation="Horizontal"
+              HorizontalAlignment="Stretch"
+              Value="{Binding player.MediaPlayer.Volume}"
+              Minimum="0"
+              Maximum="100"/>
+      <TextBlock Grid.Column="0"
+                 Grid.Row="7"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Text="{Binding CurrentTrackPositionText}"/>
+      <TextBlock Grid.Column="1"
+                 Grid.Row="7"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Center"
+                 Text="{Binding CurrentTrack.LengthText}"/>
+      <ProgressBar Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="8"
+                   Margin="10,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Value="{Binding CurrentTrackPosition}"
+                   Maximum="{Binding CurrentTrack.Length, FallbackValue=100}"/>
+      <TextBlock Grid.Column="0"
+                 Grid.Row="9"
+                 Text="File out"
+                 VerticalAlignment="Center"/>
+      <ToggleSwitch Grid.Column="1"
+                    Grid.Row="9"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding IsFileOut}"/>
+    </Grid>
+
+    <ListBox Grid.Column="1"
+             Grid.Row="1"
+             Margin="10"
+             Background="Transparent"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"             
+             Items="{Binding TrackList}"
+             SelectedItem="{Binding SelectedTrack}"
+             SelectionMode="Single">
+      <ListBox.Styles>
+        <Style Selector="ListBoxItem">
+          <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+      </ListBox.Styles>
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition MinWidth="50" MaxWidth="75"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Height="50"
+                   Stretch="Uniform"
+                   Source="{Binding CoverImage}"/>
+            <TextBlock Grid.Column="1"
+                       Margin="5,0"
+                       VerticalAlignment="Center"
+                       Text="{Binding Title}"/>
+            <TextBlock Grid.Column="2"
+                       Margin="5,0"
+                       VerticalAlignment="Center"
+                       Text="{Binding Artist}"/>
+            <Button Grid.Column="3"
+                    Content="X"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    FontSize="15"
+                    Foreground="Red"
+                    Command="{Binding Remove}"/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    
+  </Grid>
+
+</Window>

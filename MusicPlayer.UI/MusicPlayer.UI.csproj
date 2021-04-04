@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.0" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
+    <PackageReference Include="LibVLCSharp" Version="4.0.0-alpha-20210402-4104" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="4.0.0-alpha-20210404" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicPlayer.Backend\MusicPlayer.Backend.csproj" />
+    <ProjectReference Include="..\MusicPlayer.Entities\MusicPlayer.Entities.csproj" />
+  </ItemGroup>
+</Project>
