@@ -24,7 +24,7 @@
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="100"/>
-      <RowDefinition Height="auto"/>
+      <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
     <TextBlock Grid.Column="0"
