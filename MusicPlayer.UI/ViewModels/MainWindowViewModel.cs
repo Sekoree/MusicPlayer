@@ -166,7 +166,7 @@ namespace MusicPlayer.UI.ViewModels
                 this.TrackList[this.TrackList.IndexOf(item)].IsPlaying = false;
             this.TrackList[this.TrackList.IndexOf(nextTrack)].IsPlaying = true;
             await this.player.SetTrack(nextTrack.BaseTrack, true, this.IsNormalize);
-            if (IsFileOut)
+            if (this.IsFileOut)
             {
                 var curDir = Directory.GetCurrentDirectory();
                 await File.WriteAllTextAsync(@$"{curDir}\Artist.txt", $"| {nextTrack.Artist} |");
@@ -206,7 +206,7 @@ namespace MusicPlayer.UI.ViewModels
                 this.TrackList[this.TrackList.IndexOf(nextTrack)].IsPlaying = true;
                 await this.player.SetTrack(nextTrack.BaseTrack, true, this.IsNormalize);
                 this.SelectedTrack = default;
-                if (IsFileOut)
+                if (this.IsFileOut)
                 {
                     var curDir = Directory.GetCurrentDirectory();
                     await File.WriteAllTextAsync(@$"{curDir}\Artist.txt", $"| {nextTrack.Artist} |");
