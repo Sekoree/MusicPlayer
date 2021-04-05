@@ -20,9 +20,8 @@ namespace MusicPlayer.UI
                 .LogToTrace()
                 .With(new Win32PlatformOptions
                 {
-                    EnableMultitouch = true,
-                    AllowEglInitialization = true,
                     UseWgl = true,
+                    AllowEglInitialization = true
                 })
                 .UseReactiveUI();
     }
