@@ -171,12 +171,15 @@ namespace MusicPlayer.UI.ViewModels
                 var curDir = Directory.GetCurrentDirectory();
                 await File.WriteAllTextAsync(@$"{curDir}\Artist.txt", $"| {nextTrack.Artist} |");
                 await File.WriteAllTextAsync(@$"{curDir}\Title.txt", $"| {nextTrack.Title} |");
-                var ms = new MemoryStream();
-                await nextTrack.BaseTrack.CoverImage.CopyToAsync(ms);
-                await File.WriteAllBytesAsync(@$"{curDir}\Cover.jpg", ms.ToArray());
-                await ms.DisposeAsync();
-                if (nextTrack.BaseTrack.CoverImage is MemoryStream cs)
-                    cs.Position = 0;
+                if (nextTrack.BaseTrack.CoverImage != null)
+                {
+                    var ms = new MemoryStream();
+                    await nextTrack.BaseTrack.CoverImage.CopyToAsync(ms);
+                    await File.WriteAllBytesAsync(@$"{curDir}\Cover.jpg", ms.ToArray());
+                    await ms.DisposeAsync();
+                    if (nextTrack.BaseTrack.CoverImage is MemoryStream cs)
+                        cs.Position = 0;
+                }
             }
             this.CurrentTrack = this.TrackList[this.TrackList.IndexOf(nextTrack)];
         }
@@ -211,12 +214,15 @@ namespace MusicPlayer.UI.ViewModels
                     var curDir = Directory.GetCurrentDirectory();
                     await File.WriteAllTextAsync(@$"{curDir}\Artist.txt", $"| {nextTrack.Artist} |");
                     await File.WriteAllTextAsync(@$"{curDir}\Title.txt", $"| {nextTrack.Title} |");
-                    var ms = new MemoryStream();
-                    await nextTrack.BaseTrack.CoverImage.CopyToAsync(ms);
-                    await File.WriteAllBytesAsync(@$"{curDir}\Cover.jpg", ms.ToArray());
-                    await ms.DisposeAsync();
-                    if (nextTrack.BaseTrack.CoverImage is MemoryStream cs)
-                        cs.Position = 0;
+                    if (nextTrack.BaseTrack.CoverImage != null)
+                    {
+                        var ms = new MemoryStream();
+                        await nextTrack.BaseTrack.CoverImage.CopyToAsync(ms);
+                        await File.WriteAllBytesAsync(@$"{curDir}\Cover.jpg", ms.ToArray());
+                        await ms.DisposeAsync();
+                        if (nextTrack.BaseTrack.CoverImage is MemoryStream cs)
+                            cs.Position = 0;
+                    }
                 }
                 this.CurrentTrack = this.TrackList[this.TrackList.IndexOf(nextTrack)];
             }

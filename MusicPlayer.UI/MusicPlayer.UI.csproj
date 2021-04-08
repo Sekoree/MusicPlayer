@@ -12,11 +12,16 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
-    <PackageReference Include="LibVLCSharp" Version="4.0.0-alpha-20210402-4104" />
-    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="4.0.0-alpha-20210404" />
+    <PackageReference Include="LibVLCSharp" Version="4.0.0-alpha-20210407-4120" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="4.0.0-alpha-20210407" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicPlayer.Backend\MusicPlayer.Backend.csproj" />
     <ProjectReference Include="..\MusicPlayer.Entities\MusicPlayer.Entities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Controls\MediaTrackControl.axaml.cs">
+      <DependentUpon>MediaTrackControl.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

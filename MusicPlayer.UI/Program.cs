@@ -18,11 +18,6 @@ namespace MusicPlayer.UI
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .LogToTrace()
-                .With(new Win32PlatformOptions
-                {
-                    UseWgl = true,
-                    AllowEglInitialization = true
-                })
                 .UseReactiveUI();
     }
 }

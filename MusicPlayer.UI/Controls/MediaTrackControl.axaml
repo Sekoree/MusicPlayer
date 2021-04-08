@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MusicPlayer.UI.Controls.MediaTrackControl">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition MinHeight="50"
+                     MaxHeight="150"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <Image Grid.Column="0"
+           Grid.Row="0"
+           Stretch="Uniform"
+           Source="{Binding CoverImage}"/>
+    <TextBlock Grid.Column="0"
+               Grid.Row="1"
+               Text="{Binding Title}"
+               TextWrapping="Wrap"
+               TextAlignment="Center"/>
+    <TextBlock Grid.Column="0"
+               Grid.Row="2"
+               Text="{Binding Artist}"
+               TextWrapping="Wrap"
+               TextAlignment="Center"
+               FontSize="12"/>
+  </Grid>
+</UserControl>

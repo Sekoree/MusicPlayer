@@ -4,6 +4,7 @@ using MusicPlayer.Entities.Interfaces;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace MusicPlayer.Backend
         public Player()
         {
             Core.Initialize();
-            this.libVLC = new LibVLC(true, "--no-video");
+            this.libVLC = new LibVLC(true, "--no-video", "--audio-filter=normvol");
             //this.libVLC.Log += LogHappened;
             this.MediaPlayer = new MediaPlayer(this.libVLC);
             this.MediaPlayer.EnableHardwareDecoding = true;
@@ -87,5 +88,27 @@ namespace MusicPlayer.Backend
             this.MediaPlayer.Stop();
             return Task.FromResult(true);
         }
+
+        void PlayAudio(IntPtr data, IntPtr samples, uint count, long pts)
+        {
+        }
+
+        void DrainAudio(IntPtr data)
+        {
+        }
+
+        void FlushAudio(IntPtr data, long pts)
+        {
+        }
+
+        void ResumeAudio(IntPtr data, long pts)
+        {
+        }
+
+        void PauseAudio(IntPtr data, long pts)
+        {
+        }
+
+        void AudioCleanup(IntPtr opaque) { }
     }
 }

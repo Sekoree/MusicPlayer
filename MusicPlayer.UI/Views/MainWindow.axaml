@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:track="clr-namespace:MusicPlayer.Entities.Interfaces;assembly=MusicPlayer.Entities"
+        xmlns:vs="clr-namespace:MusicPlayer.UI.Controls;assembly=MusicPlayer.UI"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
         MinHeight="550"
         MinWidth="850"
@@ -11,7 +12,6 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="MusicPlayer"
         Background="#BB000000"
-        Foreground="White"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="PreferSystemChrome"
@@ -62,13 +62,11 @@
 
     <Grid Grid.Column="0"
           Grid.Row="1"
-          Margin="25,10"
-          VerticalAlignment="Stretch">
+          Margin="25,10">
       <Grid.RowDefinitions>
-        <RowDefinition MinHeight="50"
-                       MaxHeight="100"/>
-        <RowDefinition Height="25"/>
-        <RowDefinition Height="25"/>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
         <RowDefinition Height="30"/>
         <RowDefinition Height="30"/>
         <RowDefinition Height="75"/>
@@ -82,23 +80,15 @@
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       
-      <Image Grid.Row="0"
-             Grid.ColumnSpan="2"
-             Margin="0,5"
-             Source="{Binding CurrentTrack.CoverImage}"
-             Stretch="Uniform"/>
-      <TextBlock Grid.Column="0"
-                 Grid.ColumnSpan="2"
-                 Grid.Row="1"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 Text="{Binding CurrentTrack.Title}"/>
-      <TextBlock Grid.Column="0"
-                 Grid.ColumnSpan="2"
-                 Grid.Row="2"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 Text="{Binding CurrentTrack.Artist}"/>
+      <vs:MediaTrackControl Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Margin="5"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            DataContext="{Binding CurrentTrack}"/>
+      
       <Button Grid.Column="0"
               Grid.Row="3"
               HorizontalContentAlignment="Center"
