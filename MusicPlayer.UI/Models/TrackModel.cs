@@ -1,4 +1,5 @@
-﻿using Avalonia.Media.Imaging;
+﻿using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using MusicPlayer.Entities.Interfaces;
 using MusicPlayer.UI.ViewModels;
 using ReactiveUI;
@@ -13,7 +14,7 @@ namespace MusicPlayer.UI.Models
     public class TrackModel : ReactiveObject
     {
         public readonly IBaseTrack BaseTrack;
-        private readonly MainWindowViewModel viewModel;
+        public readonly MainWindowViewModel viewModel;
         public bool IsPlaying { get; set; } = false;
         public string Title { get => BaseTrack.Title; }
         public string Artist { get => BaseTrack.Artist; }

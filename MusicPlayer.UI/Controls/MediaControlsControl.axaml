@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MusicPlayer.UI.Controls.MediaControlsControl">
+  <Grid ColumnDefinitions="*,*"
+        RowDefinitions="auto,auto,auto,auto,auto,auto">
+    <Button Grid.Column="0"
+              Grid.Row="0"
+              HorizontalContentAlignment="Center"
+              HorizontalAlignment="Stretch"
+              IsEnabled="{Binding IsNotBusy}"
+              Content="Play/Pause"
+              Command="{Binding PlayPause}"/>
+    <Button Grid.Column="1"
+            Grid.Row="0"
+            HorizontalContentAlignment="Center"
+            HorizontalAlignment="Stretch"
+            IsEnabled="{Binding IsNotBusy}"
+            Content="Stop"
+            Command="{Binding Stop}"/>
+    <Button Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="1"
+            HorizontalContentAlignment="Center"
+            HorizontalAlignment="Stretch"
+            IsEnabled="{Binding IsNotBusy}"
+            Content="Skip"
+            Command="{Binding Skip}"/>
+    <ToggleSwitch Grid.Column="0"
+                  Grid.Row="2"
+                  Content="Shuffle"
+                  Margin="0,5"
+                  IsChecked="{Binding IsShuffle}"/>
+    <ToggleSwitch Grid.Column="1"
+                  Grid.Row="2"
+                  Content="Normalize"
+                  Margin="0,5"
+                  IsChecked="{Binding IsNormalize}"/>
+    <Slider Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="3"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            Value="{Binding player.MediaPlayer.Volume}"
+            Minimum="0"
+            Maximum="100"/>
+    <TextBlock Grid.Column="0"
+               Grid.Row="4"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Text="{Binding CurrentTrackPositionText, FallbackValue=00:00}"/>
+    <TextBlock Grid.Column="1"
+               Grid.Row="4"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Text="{Binding CurrentTrack.LengthText, FallbackValue=00:00}"/>
+    <ProgressBar Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="5"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Top"
+                 Value="{Binding CurrentTrackPosition}"
+                 Maximum="{Binding CurrentTrack.Length, FallbackValue=100}"/>
+  </Grid>
+</UserControl>

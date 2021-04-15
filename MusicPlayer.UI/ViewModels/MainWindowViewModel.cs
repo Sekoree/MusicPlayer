@@ -1,5 +1,7 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using LibVLCSharp;
+using LibVLCSharp.Shared;
 using MusicPlayer.Backend;
 using MusicPlayer.Entities;
 using MusicPlayer.Entities.Interfaces;
@@ -246,7 +248,9 @@ namespace MusicPlayer.UI.ViewModels
         }
         public async Task Skip()
         {
+            this.IsNotBusy = false;
             await this.Ended();
+            this.IsNotBusy = true;
         }
 
         public async Task AddLocalTracks()
@@ -319,5 +323,9 @@ namespace MusicPlayer.UI.ViewModels
             this.IsNotBusy = true;
         }
 
+        public void TestTap(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

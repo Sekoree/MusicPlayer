@@ -1,4 +1,5 @@
 ﻿using LibVLCSharp;
+using LibVLCSharp.Shared;
 using System;
 using System.Diagnostics;
 using System.IO;

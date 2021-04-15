@@ -6,8 +6,7 @@
              x:Class="MusicPlayer.UI.Controls.MediaTrackControl">
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition MinHeight="50"
-                     MaxHeight="150"/>
+      <RowDefinition Height="auto"/>
       <RowDefinition Height="auto"/>
       <RowDefinition Height="auto"/>
     </Grid.RowDefinitions>

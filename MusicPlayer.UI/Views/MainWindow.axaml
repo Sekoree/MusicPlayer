@@ -40,7 +40,7 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Margin="10">
-      <TextBox Watermark="Hello"
+      <TextBox Watermark="URL"
                Margin="5,0"
                Width="250"
                Text="{Binding LocationToAdd}"
@@ -66,14 +66,7 @@
       <Grid.RowDefinitions>
         <RowDefinition />
         <RowDefinition />
-        <RowDefinition />
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="75"/>
         <RowDefinition Height="50"/>
-        <RowDefinition Height="25"/>
-        <RowDefinition Height="25"/>
-        <RowDefinition Height="30"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
@@ -83,76 +76,22 @@
       <vs:MediaTrackControl Grid.Column="0"
                             Grid.ColumnSpan="2"
                             Grid.Row="0"
-                            Grid.RowSpan="3"
                             Margin="5"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Stretch"
+                            VerticalAlignment="Top"
                             DataContext="{Binding CurrentTrack}"/>
-      
-      <Button Grid.Column="0"
-              Grid.Row="3"
-              HorizontalContentAlignment="Center"
-              HorizontalAlignment="Stretch"
-              IsEnabled="{Binding IsNotBusy}"
-              Content="Play/Pause"
-              Command="{Binding PlayPause}"/>
-      <Button Grid.Column="1"
-              Grid.Row="3"
-              HorizontalContentAlignment="Center"
-              HorizontalAlignment="Stretch"
-              IsEnabled="{Binding IsNotBusy}"
-              Content="Stop"
-              Command="{Binding Stop}"/>
-      <Button Grid.Column="0"
-              Grid.ColumnSpan="2"
-              Grid.Row="4"
-              HorizontalContentAlignment="Center"
-              HorizontalAlignment="Stretch"
-              IsEnabled="{Binding IsNotBusy}"
-              Content="Skip"
-              Command="{Binding Skip}"/>
-      <ToggleSwitch Grid.Column="0"
-                    Grid.Row="5"
-                    Content="Shuffle"
-                    Margin="0,5"
-                    IsChecked="{Binding IsShuffle}"/>
-      <ToggleSwitch Grid.Column="1"
-                    Grid.Row="5"
-                    Content="Normalize"
-                    Margin="0,5"
-                    IsChecked="{Binding IsNormalize}"/>
-      <Slider Grid.Column="0"
-              Grid.ColumnSpan="2"
-              Grid.Row="6"
-              Orientation="Horizontal"
-              HorizontalAlignment="Stretch"
-              Value="{Binding player.MediaPlayer.Volume}"
-              Minimum="0"
-              Maximum="100"/>
+
+      <vs:MediaControlsControl Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Grid.Row="1"
+                               VerticalAlignment="Center"/>
       <TextBlock Grid.Column="0"
-                 Grid.Row="7"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Center"
-                 Text="{Binding CurrentTrackPositionText}"/>
-      <TextBlock Grid.Column="1"
-                 Grid.Row="7"
-                 HorizontalAlignment="Right"
-                 VerticalAlignment="Center"
-                 Text="{Binding CurrentTrack.LengthText}"/>
-      <ProgressBar Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Grid.Row="8"
-                   Margin="10,0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   Value="{Binding CurrentTrackPosition}"
-                   Maximum="{Binding CurrentTrack.Length, FallbackValue=100}"/>
-      <TextBlock Grid.Column="0"
-                 Grid.Row="9"
+                 Grid.Row="2"
                  Text="File out"
                  VerticalAlignment="Center"/>
       <ToggleSwitch Grid.Column="1"
-                    Grid.Row="9"
+                    Grid.Row="2"
                     VerticalAlignment="Center"
                     IsChecked="{Binding IsFileOut}"/>
     </Grid>

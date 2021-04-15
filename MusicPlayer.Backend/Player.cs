@@ -1,4 +1,5 @@
 ﻿using LibVLCSharp;
+using LibVLCSharp.Shared;
 using MusicPlayer.Entities;
 using MusicPlayer.Entities.Interfaces;
 using System;
@@ -22,10 +23,8 @@ namespace MusicPlayer.Backend
         public Player()
         {
             Core.Initialize();
-            this.libVLC = new LibVLC(true, "--no-video", "--audio-filter=normvol");
-            //this.libVLC.Log += LogHappened;
+            this.libVLC = new LibVLC(false, "--no-video", "--audio-filter=normvol");
             this.MediaPlayer = new MediaPlayer(this.libVLC);
-            this.MediaPlayer.EnableHardwareDecoding = true;
             MediaPlayer.EndReached += (s,e) => { OnTrackEndReached.Invoke(); };
         }
 
@@ -89,6 +88,7 @@ namespace MusicPlayer.Backend
             return Task.FromResult(true);
         }
 
+        #region Custom Playback Template
         void PlayAudio(IntPtr data, IntPtr samples, uint count, long pts)
         {
         }
@@ -110,5 +110,7 @@ namespace MusicPlayer.Backend
         }
 
         void AudioCleanup(IntPtr opaque) { }
+
+        #endregion
     }
 }
