@@ -11,9 +11,9 @@ namespace MusicPlayer.Entities
     public class LocalTrack : IBaseTrack
     {
         public bool MetadataLoaded { get; set; } = false;
-        public string Title { get => trackInfo.Title; }
-        public string Artist { get => trackInfo.Artist; }
-        public TimeSpan Duration { get => TimeSpan.FromMilliseconds(trackInfo.DurationMs); }
+        public string Title { get => this.trackInfo.Title; }
+        public string Artist { get => this.trackInfo.Artist; }
+        public TimeSpan Duration { get => TimeSpan.FromMilliseconds(this.trackInfo.DurationMs); }
         public Stream CoverImage { get; set; }
         public Uri Location { get; set; }
         public Uri RealLocation { get; set; }
@@ -23,7 +23,7 @@ namespace MusicPlayer.Entities
         public LocalTrack(string path)
         {
             this.Location = new Uri(path);
-            trackInfo = new Track(path);
+            this.trackInfo = new Track(path);
             this.MetadataLoaded = true;
         }
 

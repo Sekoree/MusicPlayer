@@ -1,20 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;Linux</Configurations>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="LibVLCSharp" Version="3.5.0" />
-    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.12" />
+    <PackageReference Include="LibVLCSharp" Version="3.5.1" />
+    <!--<PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*" />-->
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='Debug|x64'">
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.14" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='Release|x64'">
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.14" />
   </ItemGroup>
 
   <ItemGroup>

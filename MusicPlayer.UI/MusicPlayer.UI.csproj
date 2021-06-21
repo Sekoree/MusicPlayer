@@ -3,17 +3,22 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;Linux</Configurations>
+    <IlcOptimizationPreference>Size</IlcOptimizationPreference>
+    <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>    
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
-    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
-    <PackageReference Include="LibVLCSharp" Version="3.5.0" />
-    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.12" />
+    <PackageReference Include="Avalonia" Version="0.10.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.6" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.6" />
+    <PackageReference Include="LibVLCSharp" Version="3.5.1" />
+    <!--<PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*" />-->
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.14" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicPlayer.Backend\MusicPlayer.Backend.csproj" />

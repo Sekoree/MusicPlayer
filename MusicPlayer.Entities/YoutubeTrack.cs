@@ -45,8 +45,8 @@ namespace MusicPlayer.Entities
             this.playlistVideo = video;
             this.Location = new Uri(video.Url);
             this.Title = video.Title;
-            this.Artist = video.Author;
-            this.Duration = video.Duration;
+            this.Artist = video.Author.Title;
+            this.Duration = video.Duration.Value;
             this.hostHttpClient = hC;
             this.hostYoutubeClient = yC;
             this.MetadataLoaded = true;
@@ -55,7 +55,7 @@ namespace MusicPlayer.Entities
         public async Task<Stream> GetCoverImage()
         {
             if (video == null && playlistVideo == null) return default;
-            var thumb = await hostHttpClient.GetByteArrayAsync(video == null ? playlistVideo.Thumbnails.MediumResUrl : video.Thumbnails.MediumResUrl);
+            var thumb = await hostHttpClient.GetByteArrayAsync(video == null ? playlistVideo.Thumbnails[0].Url : video.Thumbnails[0].Url);
             var ms = new MemoryStream(thumb);
             ms.Position = 0;
             this.CoverImage = ms;
@@ -66,7 +66,7 @@ namespace MusicPlayer.Entities
         {
             if (video == null && playlistVideo == null) return default;
             var streamManifest = await hostYoutubeClient.Videos.Streams.GetManifestAsync(video == null ? playlistVideo.Id : video.Id);
-            var audio = streamManifest.GetAudioOnly().WithHighestBitrate();
+            var audio = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
             this.RealLocation = new Uri(audio.Url);
             return this.RealLocation;
         }
@@ -77,8 +77,8 @@ namespace MusicPlayer.Entities
             {
                 this.video = await hostYoutubeClient.Videos.GetAsync(this.Location.OriginalString);
                 this.Title = video.Title;
-                this.Artist = video.Author;
-                this.Duration = video.Duration;
+                this.Artist = video.Author.Title;
+                this.Duration = video.Duration.Value;
                 this.MetadataLoaded = true;
                 return true;
 

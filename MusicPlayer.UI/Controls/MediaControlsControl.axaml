@@ -35,6 +35,7 @@
                   IsChecked="{Binding IsShuffle}"/>
     <ToggleSwitch Grid.Column="1"
                   Grid.Row="2"
+                  IsEnabled="False"
                   Content="Normalize"
                   Margin="0,5"
                   IsChecked="{Binding IsNormalize}"/>

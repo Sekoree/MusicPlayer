@@ -22,7 +22,7 @@ namespace MusicPlayer.UI.Controls
             AvaloniaXamlLoader.Load(this);
         }
 
-        public void TestTap(object sender, RoutedEventArgs e)
+        public void TestTap(object? sender, RoutedEventArgs e)
         {
             var wnd = new Window() 
             {
@@ -40,6 +40,8 @@ namespace MusicPlayer.UI.Controls
             cp.Bind(MediaTrackControl.DataContextProperty, this.GetObservable(MediaTrackControl.DataContextProperty));
             cp.Margin = new Thickness(0,30,0,0);
             wnd.Content = cp;
+            wnd.Height = 250;
+            wnd.Width = 200;
             wnd.Topmost = true;
             wnd.Show();
         }

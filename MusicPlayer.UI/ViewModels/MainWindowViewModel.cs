@@ -19,6 +19,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using YoutubeExplode;
+using YoutubeExplode.Common;
 using YoutubeExplode.Playlists;
 using YoutubeExplode.Videos;
 
@@ -104,7 +105,7 @@ namespace MusicPlayer.UI.ViewModels
             set { _isNotBusy = this.RaiseAndSetIfChanged(ref _isNotBusy, value); }
         }
 
-        private bool _isFileOut = true;
+        private bool _isFileOut = false;
 
         public bool IsFileOut
         {
@@ -188,7 +189,6 @@ namespace MusicPlayer.UI.ViewModels
 
         public async Task PlayPause()
         {
-            
             this.IsNotBusy = false;
             if (this.SelectedTrack?.IsPlaying != true
                 && !(this.SelectedTrack == null && this.TrackList.Any(x => x.IsPlaying)))
